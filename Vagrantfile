@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "saltmaster", primary: true do |sm|
     sm.vm.box = "#{os}"
-    sm.vm.host_name = 'saltmaster.vagrant.local'
+    sm.vm.host_name = 'saltmaster.vagrant.lan'
     sm.vm.network "private_network", ip: "#{net_ip}.10"
 
     # Change master hardware specs here
@@ -65,7 +65,7 @@ Vagrant.configure("2") do |config|
       end
 
       node.vm.box = "#{os}"
-      node.vm.host_name = "minion#{minion_index}.vagrant.local"
+      node.vm.host_name = "minion#{minion_index}.vagrant.lan"
       node.vm.network "private_network", ip: "#{net_ip}.1#{minion_index}"
 
       # We just use the salt provisioner to install and configure salt
