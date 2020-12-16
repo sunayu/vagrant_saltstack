@@ -1,5 +1,9 @@
 Vagrant.configure("2") do |config|
   # Some vm settings
+
+  # Major salt version to install
+  salt_version = "3002"
+
   # This is the minions local subnet
   # Note this also needs to be changed in pillar/mine.sls
   net_ip = "192.168.67"
@@ -39,7 +43,8 @@ Vagrant.configure("2") do |config|
       salt.verbose = true
       salt.colorize = true
       salt.install_type = "stable"
-      salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i saltmaster"
+      salt.version = salt_version
+      salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i saltmaster -x python3"
     end
 
     # We call salt-call --local to configure the saltmaster
@@ -69,7 +74,8 @@ Vagrant.configure("2") do |config|
         salt.verbose = true
         salt.colorize = true
         salt.install_type = "stable"
-        salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i minion#{minion_index}"
+        salt.version = salt_version
+        salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i minion#{minion_index} -x python3"
       end
 
       # We call salt-call --local to configure each minion
