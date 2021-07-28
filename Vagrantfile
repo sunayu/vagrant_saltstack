@@ -2,7 +2,7 @@ Vagrant.configure("2") do |config|
   # Some vm settings
 
   # Major salt version to install
-  salt_version = "3002"
+  salt_version = "3003"
 
   # This is the minions local subnet
   # Note this also needs to be changed in pillar/mine.sls
