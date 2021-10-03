@@ -19,7 +19,7 @@ vagrant ssh saltmaster
  
 Verify minions have checked into saltmaster:
 ```
-salt '*' test.ping
+sudo salt '*' test.ping
 ```
 
 # Vagrantfile notes
