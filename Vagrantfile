@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
 
   # This is the minions local subnet
   # Note this also needs to be changed in pillar/mine.sls
-  net_ip = "192.168.49"
+  net_ip = "192.168.56"
   
   # Number of minions to create not counting the saltmaster
   minion_count = 1
