@@ -2,14 +2,14 @@ Vagrant.configure("2") do |config|
   # Some vm settings
 
   # Major salt version to install
-  salt_version = "3004"
+  salt_version = "3005"
 
   # This is the minions local subnet
   # Note this also needs to be changed in pillar/mine.sls
   net_ip = "192.168.56"
   
   # Number of minions to create not counting the saltmaster
-  minion_count = 1
+  minion_count = 0
 
   # This is so we can use the same ssh key to make it easier to dev against
   # Yes it is insecure...
