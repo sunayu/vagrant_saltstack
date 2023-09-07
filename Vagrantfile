@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
       salt.install_master = true
       salt.verbose = true
       salt.colorize = true
-      salt.install_type = "stable"
+      salt.install_type = "old-stable"
       salt.version = salt_version
       salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i saltmaster -x python3"
     end
@@ -73,7 +73,7 @@ Vagrant.configure("2") do |config|
         salt.install_master = false
         salt.verbose = true
         salt.colorize = true
-        salt.install_type = "stable"
+        salt.install_type = "old-stable"
         salt.version = salt_version
         salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i minion#{minion_index} -x python3"
       end
