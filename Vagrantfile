@@ -2,7 +2,7 @@ Vagrant.configure("2") do |config|
   # Some vm settings
 
   # Major salt version to install
-  salt_version = "3005"
+  salt_version = "3006"
 
   # This is the minions local subnet
   # Note this also needs to be changed in pillar/mine.sls
@@ -16,10 +16,8 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
 
   # Which os to install
-  os = "centos/7" # centos7
-  #os = "ubuntu/xenial64" # ubuntu 16.04 LTS
-  #os = "ubuntu/bionic64" # ubuntu 18.04 LTS
-  #os = "ubuntu/focal64" # ubuntu 20.04 LTS
+  #os = "centos/7" # centos7
+  os = "generic/oracle8"
 
   # Move salt files to all systems to be run locally
   config.vm.provision "shell", inline: "chown vagrant /srv"
@@ -42,9 +40,9 @@ Vagrant.configure("2") do |config|
       salt.install_master = true
       salt.verbose = true
       salt.colorize = true
-      salt.install_type = "old-stable"
+      salt.install_type = "stable"
       salt.version = salt_version
-      salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i saltmaster -x python3"
+      salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i saltmaster"
     end
 
     # We call salt-call --local to configure the saltmaster
@@ -73,9 +71,9 @@ Vagrant.configure("2") do |config|
         salt.install_master = false
         salt.verbose = true
         salt.colorize = true
-        salt.install_type = "old-stable"
+        salt.install_type = "stable"
         salt.version = salt_version
-        salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i minion#{minion_index} -x python3"
+        salt.bootstrap_options = "-X -c /tmp -A #{net_ip}.10 -i minion#{minion_index}"
       end
 
       # We call salt-call --local to configure each minion
