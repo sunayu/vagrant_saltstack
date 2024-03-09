@@ -17,3 +17,10 @@ salt minion service:
     - file: add log level
     - file: add default grain
 
+# Some distros have firewalld on. Lets disable for easier dev...
+{%- if salt["service.available"]('firewalld') %}
+salt minion disable firewalld:
+  service.dead:
+  - name: firewalld
+  - enable: False
+{%- endif %}
